@@ -1,7 +1,6 @@
 package songLib.view;
 import java.util.ArrayList;
 import java.util.Comparator;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -24,6 +23,7 @@ public class SongLibController {
 	ObservableList<Song> songsObsList;
 	SortedList<Song> sortedSongs;
 	
+	
 	public void initData(ArrayList<Song> songs) {
 		songsObsList = FXCollections.observableList(songs);
 		sortedSongs = new SortedList<Song>(songsObsList);
@@ -39,5 +39,6 @@ public class SongLibController {
 		};
 		*/
 	}
+	
 
 }
