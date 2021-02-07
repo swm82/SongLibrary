@@ -24,7 +24,7 @@ public class SongLibApp extends Application {
 		Parent root = loader.load();
 		SongLibController controller = loader.getController();
 		controller.initData(library);
-		primaryStage.setTitle("Sub order");
+		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.show();
 	}
