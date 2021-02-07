@@ -8,10 +8,12 @@ import java.util.List;
 
 public class SongLibAppTest {
 	
+	private static Library library;
+	
 	public static void main(String[] args) throws IOException {
 		String filename = "test.csv";
 		BufferedReader reader = getFile(filename);
-		Library library = new Library();
+		library = new Library();
 		
 		
 		if (reader !=  null) {
@@ -37,31 +39,13 @@ public class SongLibAppTest {
 		}
 	}
 	
-	public static List<Song> readFile(BufferedReader reader, Library library) throws IOException {
+	public static void readFile(BufferedReader reader, Library library) throws IOException {
 		String line = "";
 		String delim = ";";
-		List<Song> songs = new ArrayList<Song>();
 		while ((line = reader.readLine()) != null) {
 			String[] songInfo = line.split(delim);
-			library.addSong(songInfo, songs);
+			library.addSong(songInfo);
 		}
-		return songs;
 	}
-	
-	/* Moved to library Class
-	public static void addSong(String[] songInfo, List<Song> songs) {
-		if (songInfo.length < 2 || songInfo.length > 4) return;
-		String name = songInfo[0];
-		String artist = songInfo[1];
-		String album = null;
-		String year = null;
-		if (songInfo.length == 4) {
-			album = songInfo[2]; year = songInfo[3];
-		} else if (songInfo.length == 3) {
-			album = songInfo[2];
-		}
-		Song song = new Song(name, artist, album, year);
-		if (!songs.contains(song)) songs.add(new Song(name, artist, album, year));
-	}*/
 
 }

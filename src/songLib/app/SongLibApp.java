@@ -1,5 +1,11 @@
 package songLib.app;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +15,7 @@ import songLib.view.*;
 
 public class SongLibApp extends Application {
 	
-	private Library library;
+	private static Library library;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -17,16 +23,47 @@ public class SongLibApp extends Application {
 		loader.setLocation(getClass().getResource("/SongLib/view/SongLib.fxml"));
 		Parent root = loader.load();
 		SongLibController controller = loader.getController();
-		// controller.initData(library.getSongs());
+		controller.initData(library);
 		primaryStage.setTitle("Sub order");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.show();
 	}
 	
-	public static void main(String[] args) {
-		// Read file
-		// Build library
+	
+	public static void main(String[] args) throws IOException {
+		String filename = "test.csv";
+		BufferedReader reader = getFile(filename);
+		library = new Library();
+		
+		
+		if (reader !=  null) {
+			readFile(reader, library);
+			reader.close();
+		}
+		
+		List<Song> songs = library.getSongs();
+		
+		System.out.println(songs);
 		launch(args);
+		
+	}
+	
+	public static BufferedReader getFile(String filename) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(filename));
+			return reader;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public static void readFile(BufferedReader reader, Library library) throws IOException {
+		String line = "";
+		String delim = ";";
+		while ((line = reader.readLine()) != null) {
+			String[] songInfo = line.split(delim);
+			library.addSong(songInfo);
+		}
 	}
 
 }

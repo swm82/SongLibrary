@@ -1,43 +1,44 @@
 package songLib.view;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import songLib.app.*;
 
 public class SongLibController {
 	
-	// Library library;
-	
-	/* 
-	 * I think changes to observable list will propagate back to the original song arraylist as well as to
-	   the sorted list.
-	 * So I think, after the controller is loaded with the initial library song list, all changes should be made
-	   to the observable list.
-	 * I don't think we need to maintain a reference to the library in the controller
-	 * 
-	 * 
-	*/
-	
-	ObservableList<Song> songsObsList;
-	SortedList<Song> sortedSongs;
+	@FXML TextArea songName, songArtist, songAlbum, songYear;
+	@FXML Button add, delete, edit, submitEdit;
+	@FXML ListView<Song> list;
 	
 	
-	public void initData(ArrayList<Song> songs) {
-		songsObsList = FXCollections.observableList(songs);
-		sortedSongs = new SortedList<Song>(songsObsList);
+	private Library library;
+	
+	public void initData(Library library) {
+		this.library = library;
+		list.setItems(this.library.getSongs());
+	}
+	
+	
+	// Event handlers
+	public void addSong(ActionEvent e) {
+		//library.addSong();
+	}
+	
+	public void deleteSong(ActionEvent e) {
 		
-		/* Comparator for SortedList - not sure if needed since Songs implements Comparable
-		Comparator comp = new Comparator<Song>() {
-			@Override
-			public int compare(Song a, Song b) {
-				int nameCompVal = a.getName().compareToIgnoreCase(b.getName());
-				if (nameCompVal != 0) return nameCompVal;
-				return a.getArtist().compareToIgnoreCase(b.getArtist());
-			}
-		};
-		*/
+	}
+	
+	public void editSong(ActionEvent e) {
+		
 	}
 	
 
