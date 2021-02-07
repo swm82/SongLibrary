@@ -23,6 +23,7 @@ public class SongLibApp extends Application {
 		loader.setLocation(getClass().getResource("/SongLib/view/SongLib.fxml"));
 		Parent root = loader.load();
 		SongLibController controller = loader.getController();
+		controller.start(primaryStage);
 		controller.initData(library);
 		primaryStage.setTitle("Song Library");
 		primaryStage.setScene(new Scene(root, 600, 400));
