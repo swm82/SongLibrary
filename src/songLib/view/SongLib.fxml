@@ -52,7 +52,7 @@
               </rowConstraints>
                <children>
                   <Label text="Artist:" />
-                  <TextArea fx:id="songArtist" editable="false" GridPane.columnIndex="1" />
+                  <TextArea fx:id="songArtist" editable="false" prefHeight="51.0" prefWidth="260.0" GridPane.columnIndex="1" />
                   <Label text="Name:" GridPane.rowIndex="1" />
                   <TextArea fx:id="songName" editable="false" layoutX="55.0" layoutY="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Album:" GridPane.rowIndex="2" />
@@ -64,7 +64,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </GridPane>
-            <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteSong" style="-fx-background-color: Red; -fx-border-color: black; -fx-border-radius: 5; -fx-border-width: 2; -fx-background-insets: 2;" text="Delete Song" />
+            <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: Red; -fx-border-color: black; -fx-border-radius: 5; -fx-border-width: 2; -fx-background-insets: 2;" text="Delete Song" />
          </children>
       </VBox>
    </children>

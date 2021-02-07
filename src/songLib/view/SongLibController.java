@@ -52,9 +52,15 @@ public class SongLibController implements Initializable {
 		//library.addSong();
 	}
 	
-	public void deleteSong(ActionEvent e) {
-		System.out.println("HERE");
-		library.deleteSong(songList.getSelectionModel().getSelectedItem());
+	public void addButton(ActionEvent e) {
+	
+	}
+	
+	public void handleClick(ActionEvent e) {
+		Button button = (Button)e.getSource();
+		if (button == deleteButton) {
+			library.deleteSong(songList.getSelectionModel().getSelectedItem());
+		}
 		
 	}
 	
@@ -65,6 +71,7 @@ public class SongLibController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		// we can probably remove the intializable interface
 		
 	}
 	
