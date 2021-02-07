@@ -67,17 +67,16 @@ public class Song implements Comparable<Song> {
 		if (o == this) return true;
 		if (!(o instanceof Song)) return false;
 		Song other = (Song) o;
-		return other.name.toLowerCase().equals(name.toLowerCase()) 
-				&& other.artist.toLowerCase().equals(artist.toLowerCase());
+		return other.name.equalsIgnoreCase(name) && other.artist.equalsIgnoreCase(artist);
 	}
 
 	
 	@Override
 	public int compareTo(Song other) {
 		// TODO Auto-generated method stub
-		int nameCompVal = name.compareTo(other.name);
+		int nameCompVal = name.compareToIgnoreCase(other.name);
 		if (nameCompVal != 0) return nameCompVal;
-		return artist.compareTo(other.artist);
+		return artist.compareToIgnoreCase(other.artist);
 	}
 
 }

@@ -11,12 +11,12 @@ public class SongLibAppTest {
 	public static void main(String[] args) throws IOException {
 		String filename = "test.csv";
 		BufferedReader reader = getFile(filename);
-		Library library;
+		Library library = new Library();
+		
+		
 		if (reader !=  null) {
-			library = new Library(readFile(reader));
+			readFile(reader, library);
 			reader.close();
-		} else {
-			library = new Library();
 		}
 		
 		List<Song> songs = library.getSongs();
@@ -37,17 +37,18 @@ public class SongLibAppTest {
 		}
 	}
 	
-	public static List<Song> readFile(BufferedReader reader) throws IOException {
+	public static List<Song> readFile(BufferedReader reader, Library library) throws IOException {
 		String line = "";
 		String delim = ";";
 		List<Song> songs = new ArrayList<Song>();
 		while ((line = reader.readLine()) != null) {
 			String[] songInfo = line.split(delim);
-			addSong(songInfo, songs);
+			library.addSong(songInfo, songs);
 		}
 		return songs;
 	}
 	
+	/* Moved to library Class
 	public static void addSong(String[] songInfo, List<Song> songs) {
 		if (songInfo.length < 2 || songInfo.length > 4) return;
 		String name = songInfo[0];
@@ -59,7 +60,8 @@ public class SongLibAppTest {
 		} else if (songInfo.length == 3) {
 			album = songInfo[2];
 		}
-		songs.add(new Song(name, artist, album, year));
-	}
+		Song song = new Song(name, artist, album, year);
+		if (!songs.contains(song)) songs.add(new Song(name, artist, album, year));
+	}*/
 
 }

@@ -10,18 +10,23 @@ public class Library {
 		songs = new ArrayList<Song>();
 	}
 	
-	public Library(List<Song> songs) {
-		this.songs = songs;
-	}
-	
 	public List<Song> getSongs() {
 		return songs;
 	}
 	
-	// Cases of missing album or year should be handled when taking input, else we need to overload this method
-	public void addSong(String name, String artist, String album, String year) {
+	public void addSong(String[] songInfo, List<Song> songs) {
+		if (songInfo.length < 2 || songInfo.length > 4) return;
+		String name = songInfo[0];
+		String artist = songInfo[1];
+		String album = null;
+		String year = null;
+		if (songInfo.length == 4) {
+			album = songInfo[2]; year = songInfo[3];
+		} else if (songInfo.length == 3) {
+			album = songInfo[2];
+		}
 		Song song = new Song(name, artist, album, year);
-		songs.add(song);
+		if (!songs.contains(song)) songs.add(new Song(name, artist, album, year));
 	}
 		
 	// I think this (slow) method for removal would work for observable lists
