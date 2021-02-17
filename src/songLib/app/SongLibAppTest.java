@@ -21,11 +21,6 @@ public class SongLibAppTest {
 			reader.close();
 		}
 		
-		List<Song> songs = library.getSongs();
-		
-		System.out.println(songs);
-		library.sortSongs();
-		System.out.println(songs);
 		
 		
 	}

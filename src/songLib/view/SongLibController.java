@@ -15,20 +15,27 @@ import songLib.app.*;
 public class SongLibController implements Initializable {
 	
 	@FXML TextField songName, songArtist, songAlbum, songYear;
-	@FXML Button addButton, deleteButton, editButton;
+	@FXML TextField createName, createArtist, createAlbum, createYear;
+	@FXML Button addButton, deleteButton, cancelSongCreate, activateEditor, submitEditor, cancelEditor;
 	@FXML ListView<Song> songList;
+	
+	private boolean editMode;
 	
 	
 	private Library library;
 	private Stage primaryStage;
 	
 	public void initData(Library lib) {
+		editMode = false;
 		library = lib;
 		songList.setItems(library.getSongs());
 		songName.setEditable(false);
 		songArtist.setEditable(false);
 		songAlbum.setEditable(false);
 		songYear.setEditable(false);
+		
+		submitEditor.setDisable(true);
+		cancelEditor.setDisable(true);
 		
 		 if (library.size() != 0) {
 			songList.getSelectionModel().select(0);
@@ -37,7 +44,13 @@ public class SongLibController implements Initializable {
 		
 		songList.getSelectionModel().selectedIndexProperty().addListener(
 				(obs, oldVal, newVal) -> 
-				displayInfo(songList.getSelectionModel().getSelectedItem()));
+				{
+				displayInfo(songList.getSelectionModel().getSelectedItem());
+				cancelEditing(null);
+				}
+				);
+		
+		
 	}
 	
 	public void start(Stage primaryStage) {
@@ -48,6 +61,7 @@ public class SongLibController implements Initializable {
 	// Event handlers
 	public void displayInfo(Song song) {
 		
+		System.out.println("Displaying Info");
 		if (song != null) {
 		songArtist.setText(song.getArtist());
 		songName.setText(song.getName());
@@ -69,7 +83,15 @@ public class SongLibController implements Initializable {
 	}
 
 	public void addCommand(ActionEvent e) {
-		System.out.println("Add");
+		String[] details = {createName.getText(), createArtist.getText(), createAlbum.getText(), createYear.getText()};
+		Song newAddition = library.addSong(details);
+		displayInfo(newAddition);
+		createName.setText("");
+		createAlbum.setText("");
+		createYear.setText("");
+		createArtist.setText("");
+		songList.getSelectionModel().select(library.getSongs().indexOf(newAddition));
+
 	}
 	
 	public void deleteCommand(ActionEvent e) {
@@ -80,8 +102,71 @@ public class SongLibController implements Initializable {
 		System.out.println("Delete");
 	}
 	
+	public void eraseCreator(ActionEvent e) {
+		createName.setText("");
+		createAlbum.setText("");
+		createYear.setText("");
+		createArtist.setText("");
+		
+	}
+	
 	public void editCommand(ActionEvent e) {
+		
+		//songList.setMouseTransparent( true );
+		//songList.setFocusTraversable( false );
+		editMode = true;
 		System.out.println("Edit");
+		
+		songName.setEditable(true);
+		songArtist.setEditable(true);
+		songAlbum.setEditable(true);
+		songYear.setEditable(true);
+
+		activateEditor.setDisable(true);
+		
+		songArtist.requestFocus();
+		songArtist.positionCaret(songArtist.getText().length());
+		submitEditor.setDisable(false);
+		cancelEditor.setDisable(false);
+
+	}
+	
+	public void cancelEditing(ActionEvent e) {
+		
+		System.out.println("Exiting Editor Mode");
+		
+		if (!editMode) {
+			System.out.println(editMode);
+			return;
+		}
+		
+		
+		submitEditor.setDisable(true);
+		cancelEditor.setDisable(true);
+		activateEditor.setDisable(false);
+
+		displayInfo(songList.getSelectionModel().getSelectedItem());
+		
+		songName.setEditable(false);
+		songArtist.setEditable(false);
+		songAlbum.setEditable(false);
+		songYear.setEditable(false);
+		
+		songList.requestFocus();
+		editMode = false;
+	}
+	
+	public void submitEdits(ActionEvent e) {
+		
+		System.out.println("Edits Submitted");
+		String[] details = {songName.getText(), songArtist.getText(), songAlbum.getText(), songYear.getText()};
+		Song edited = songList.getSelectionModel().getSelectedItem();
+		edited.setName(songName.getText());
+		edited.setArtist(songArtist.getText());
+		edited.setAlbum(songAlbum.getText());
+		edited.setYear(songYear.getText());
+		editMode = false;
+		songList.setItems(library.getSongs());
 	}
 
 	@Override

@@ -43,9 +43,6 @@ public class SongLibApp extends Application {
 			reader.close();
 		}
 		
-		List<Song> songs = library.getSongs();
-		
-		System.out.println(songs);
 		launch(args);
 		
 	}
