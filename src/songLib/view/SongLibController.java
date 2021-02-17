@@ -63,7 +63,6 @@ public class SongLibController implements Initializable {
 	// Event handlers
 	public void displayInfo(Song song) {
 		
-		System.out.println("Displaying Info");
 		if (song != null) {
 		songArtist.setText(song.getArtist());
 		songName.setText(song.getName());

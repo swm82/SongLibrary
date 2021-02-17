@@ -67,6 +67,7 @@ public class SongLibApp extends Application {
 	
 	public void stop() {
 		// Handle File writing here
+		// writeFile()
 		System.out.println("DONE");
 	}
 
