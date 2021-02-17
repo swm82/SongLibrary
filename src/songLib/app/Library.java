@@ -49,9 +49,14 @@ public class Library {
 	// I think this (slow) method for removal would work for observable lists
 	public void deleteSong(Song songToDelete) {
 		obsSongList.removeIf(song -> song.equals(songToDelete));
+		//obsSongList.remove(songToDelete);
 	}
 	
 	public void sortSongs() {
 		songs.sort(null);
+	}
+	
+	public int size() {
+		return obsSongList.size();
 	}
 }

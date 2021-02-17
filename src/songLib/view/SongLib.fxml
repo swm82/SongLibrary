@@ -4,33 +4,34 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox style="-fx-font-family: Arial;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songLib.view.SongLibController">
+<HBox prefHeight="486.0" prefWidth="921.0" style="-fx-font-family: Arial;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songLib.view.SongLibController">
    <children>
-      <VBox fx:id="listPanel" prefHeight="485.0" prefWidth="260.0">
+      <VBox fx:id="listPanel" alignment="CENTER" prefHeight="486.0" prefWidth="335.0">
          <children>
-            <ListView fx:id="songList" prefHeight="393.0" prefWidth="111.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <Label fx:id="detailTitle2" alignment="TOP_RIGHT" text="Gallery">
+               <padding>
+                  <Insets bottom="15.0" />
+               </padding>
+            </Label>
+            <ListView fx:id="songList" prefHeight="322.0" prefWidth="270.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addSong" mnemonicParsing="false" text="Add Song" />
-                  <Button fx:id="editSong" mnemonicParsing="false" text="Edit song" />
+                  <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteCommand" style="-fx-background-color: Red; -fx-border-color: black; -fx-border-radius: 5; -fx-border-width: 2; -fx-background-insets: 2;" text="Delete Song" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
             </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox fx:id="detailPanel" alignment="CENTER" prefHeight="485.0" prefWidth="360.0" spacing="20.0">
+      <VBox fx:id="detailPanel" alignment="CENTER" prefHeight="486.0" prefWidth="317.0" spacing="20.0">
          <HBox.margin>
             <Insets />
          </HBox.margin>
@@ -38,7 +39,10 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <Label fx:id="detailTitle" text="Song Details" />
+            <Label fx:id="detailTitle" text="Song Details">
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin></Label>
             <GridPane fx:id="detailGrid" alignment="CENTER" hgap="5.0" prefHeight="216.0" prefWidth="277.0" vgap="5.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="43.0" />
@@ -52,19 +56,75 @@
               </rowConstraints>
                <children>
                   <Label text="Artist:" />
-                  <TextArea fx:id="songArtist" editable="false" prefHeight="51.0" prefWidth="260.0" GridPane.columnIndex="1" />
                   <Label text="Name:" GridPane.rowIndex="1" />
-                  <TextArea fx:id="songName" editable="false" layoutX="55.0" layoutY="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Album:" GridPane.rowIndex="2" />
-                  <TextArea fx:id="songAlbum" editable="false" layoutX="10.0" layoutY="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Year:" GridPane.rowIndex="3" />
-                  <TextArea fx:id="songYear" editable="false" layoutX="101.0" layoutY="74.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="songArtist" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="songName" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="songAlbum" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="songYear" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </GridPane>
-            <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleClick" style="-fx-background-color: Red; -fx-border-color: black; -fx-border-radius: 5; -fx-border-width: 2; -fx-background-insets: 2;" text="Delete Song" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="274.0" spacing="15.0">
+               <children>
+                  <Button fx:id="editButton1" mnemonicParsing="false" onAction="#editCommand" text="Edit song" />
+                  <Button fx:id="editButton11" layoutX="191.0" layoutY="48.0" mnemonicParsing="false" onAction="#editCommand" text="Submit Changes" />
+                  <Button fx:id="editButton12" mnemonicParsing="false" onAction="#editCommand" prefHeight="23.0" prefWidth="66.0" text="Cancel" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="detailPanel1" alignment="CENTER" prefHeight="486.0" prefWidth="322.0" spacing="20.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <Label fx:id="detailTitle1" text="Song Creator">
+               <padding>
+                  <Insets left="87.0" />
+               </padding>
+            </Label>
+            <GridPane fx:id="detailGrid1" alignment="CENTER" hgap="5.0" prefHeight="216.0" prefWidth="277.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="43.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Artist:" />
+                  <Label text="Name:" GridPane.rowIndex="1" />
+                  <Label text="Album:" GridPane.rowIndex="2" />
+                  <Label text="Year:" GridPane.rowIndex="3" />
+                  <TextField prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" />
+                  <TextField prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </GridPane>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="231.0" spacing="20.0">
+               <children>
+                  <Button fx:id="deleteButton1" mnemonicParsing="false" onAction="#deleteCommand" style="-fx-background-color: #5cf54e; -fx-border-color: black; -fx-border-radius: 5; -fx-border-width: 2; -fx-background-insets: 2;" text="Add Song">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="editButton121" mnemonicParsing="false" onAction="#editCommand" prefHeight="23.0" prefWidth="62.0" text="Cancel" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

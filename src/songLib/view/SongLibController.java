@@ -8,23 +8,33 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import songLib.app.*;
 
 public class SongLibController implements Initializable {
 	
-	@FXML TextArea songName, songArtist, songAlbum, songYear;
-	@FXML Button add, deleteButton, edit, submitEdit;
+	@FXML TextField songName, songArtist, songAlbum, songYear;
+	@FXML Button addButton, deleteButton, editButton;
 	@FXML ListView<Song> songList;
 	
 	
 	private Library library;
 	private Stage primaryStage;
 	
-	public void initData(Library library) {
-		this.library = library;
-		songList.setItems(this.library.getSongs());
-		songList.getSelectionModel().select(0);
+	public void initData(Library lib) {
+		library = lib;
+		songList.setItems(library.getSongs());
+		songName.setEditable(false);
+		songArtist.setEditable(false);
+		songAlbum.setEditable(false);
+		songYear.setEditable(false);
+		
+		 if (library.size() != 0) {
+			songList.getSelectionModel().select(0);
+			displayInfo(songList.getSelectionModel().getSelectedItem());
+		 }
+		
 		songList.getSelectionModel().selectedIndexProperty().addListener(
 				(obs, oldVal, newVal) -> 
 				displayInfo(songList.getSelectionModel().getSelectedItem()));
@@ -37,6 +47,8 @@ public class SongLibController implements Initializable {
 	
 	// Event handlers
 	public void displayInfo(Song song) {
+		
+		if (song != null) {
 		songArtist.setText(song.getArtist());
 		songName.setText(song.getName());
 		String album = song.getAlbum();
@@ -45,27 +57,31 @@ public class SongLibController implements Initializable {
 		else songAlbum.setText("");
 		if (year != null) songYear.setText(song.getYear());
 		else songYear.setText("");
-
-	}
-
-	public void addSong(ActionEvent e) {
-		//library.addSong();
-	}
-	
-	public void addButton(ActionEvent e) {
-	
-	}
-	
-	public void handleClick(ActionEvent e) {
-		Button button = (Button)e.getSource();
-		if (button == deleteButton) {
-			library.deleteSong(songList.getSelectionModel().getSelectedItem());
 		}
 		
+		else {
+		songArtist.setText("");
+		songName.setText("");
+		songAlbum.setText("");
+		songYear.setText("");
+		}
+
+	}
+
+	public void addCommand(ActionEvent e) {
+		System.out.println("Add");
 	}
 	
-	public void editSong(ActionEvent e) {
-		
+	public void deleteCommand(ActionEvent e) {
+		int currIndex = songList.getSelectionModel().getSelectedIndex();
+		library.deleteSong(songList.getSelectionModel().getSelectedItem());
+		songList.getSelectionModel().select(currIndex);
+		displayInfo(songList.getSelectionModel().getSelectedItem());
+		System.out.println("Delete");
+	}
+	
+	public void editCommand(ActionEvent e) {
+		System.out.println("Edit");
 	}
 
 	@Override

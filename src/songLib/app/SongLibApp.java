@@ -26,7 +26,8 @@ public class SongLibApp extends Application {
 		controller.start(primaryStage);
 		controller.initData(library);
 		primaryStage.setTitle("Song Library");
-		primaryStage.setScene(new Scene(root, 600, 400));
+		primaryStage.setScene(new Scene(root));
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
