@@ -70,9 +70,9 @@
             </GridPane>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="274.0" spacing="15.0">
                <children>
-                  <Button fx:id="activateEditor" mnemonicParsing="false" onAction="#editCommand" text="Edit song" />
+                  <Button fx:id="activateEditor" mnemonicParsing="false" onAction="#toggleEdit" text="Edit song" />
                   <Button fx:id="submitEditor" layoutX="191.0" layoutY="48.0" mnemonicParsing="false" onAction="#submitEdits" text="Submit Changes" />
-                  <Button fx:id="cancelEditor" mnemonicParsing="false" onAction="#cancelEditing" prefHeight="23.0" prefWidth="66.0" text="Cancel" />
+                  <Button fx:id="cancelEditor" mnemonicParsing="false" onAction="#toggleEdit" prefHeight="23.0" prefWidth="66.0" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets />

@@ -11,7 +11,14 @@ public class Song implements Comparable<Song> {
 		this.artist = artist;
 		this.name = name;
 		this.album = album;
-		this.year = year;
+		this.year = validateYear(year);
+	}
+	
+	public String validateYear(String year) {
+		if (!year.matches("^\\d{4}$")) {
+			return "";
+		}
+		return year;
 	}
 	
 	// Getters & Setters
@@ -44,7 +51,7 @@ public class Song implements Comparable<Song> {
 	}
 	
 	public void setYear(String year) {
-		this.year = year;
+		this.year = validateYear(year);
 	}
 	
 	
