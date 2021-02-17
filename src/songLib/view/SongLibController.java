@@ -112,42 +112,42 @@ public class SongLibController implements Initializable {
 		
 	}
 	
-	
+	// Goes thru the detail pane to toggle controls
 	public void toggleEdit(ActionEvent e) {
 		detailPanel.getChildren().forEach(node -> {
-		if (node instanceof GridPane) {
-			GridPane gpNode = (GridPane) node;
-			gpNode.getChildren().forEach(item -> {
-				if (item instanceof TextField) {
-				TextField textNode = (TextField) item;
-				if (textNode.isEditable()) {
-					textNode.setEditable(false);
-					editMode = false;
-					songList.requestFocus();
-				}
-				else {
-					textNode.setEditable(true);
-					editMode = true;
-					if (textNode == songArtist) {
-						songArtist.requestFocus();
-						songArtist.positionCaret(songArtist.getText().length());
+			if (node instanceof GridPane) {
+				GridPane gpNode = (GridPane) node;
+				gpNode.getChildren().forEach(item -> {
+					if (item instanceof TextField) {
+						TextField textNode = (TextField) item;
+						if (textNode.isEditable()) {
+							textNode.setEditable(false);
+							editMode = false;
+							songList.requestFocus();
+						}
+						else {
+							textNode.setEditable(true);
+							editMode = true;
+						}
 					}
-				}
+				});
+
+			} else if (node instanceof HBox) {
+				HBox hbNode = (HBox) node;
+				hbNode.getChildren().forEach(item -> {
+					if (item instanceof Button) {
+						Button buttonNode = (Button) item;
+						if (buttonNode.isDisabled()) buttonNode.setDisable(false);
+						else buttonNode.setDisable(true);
+					}
+				});
 			}
-			});
-		} else if (node instanceof HBox) {
-			HBox hbNode = (HBox) node;
-			hbNode.getChildren().forEach(item -> {
-				if (item instanceof Button) {
-				Button buttonNode = (Button) item;
-				if (buttonNode.isDisabled()) buttonNode.setDisable(false);
-				else buttonNode.setDisable(true);
-			}
-			});
-		}
 		});
-		if (!editMode)
-			displayInfo(songList.getSelectionModel().getSelectedItem());
+		if (!editMode) displayInfo(songList.getSelectionModel().getSelectedItem());
+		else {
+			songArtist.requestFocus();
+			songArtist.positionCaret(songArtist.getText().length());
+		}
 	}
 	
 //	public void editCommand(ActionEvent e) {
@@ -197,8 +197,6 @@ public class SongLibController implements Initializable {
 //	}
 	
 	public void submitEdits(ActionEvent e) {
-		
-		System.out.println("Edits Submitted");
 		String[] details = {songName.getText(), songArtist.getText(), songAlbum.getText(), songYear.getText()};
 		Song edited = songList.getSelectionModel().getSelectedItem();
 		edited.setName(songName.getText());

@@ -64,5 +64,10 @@ public class SongLibApp extends Application {
 			library.addSong(songInfo);
 		}
 	}
+	
+	public void stop() {
+		// Handle File writing here
+		System.out.println("DONE");
+	}
 
 }

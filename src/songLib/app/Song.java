@@ -15,7 +15,7 @@ public class Song implements Comparable<Song> {
 	}
 	
 	public String validateYear(String year) {
-		if (!year.matches("^\\d{4}$")) {
+		if (!year.matches("^(18|19|20)\\d{2}$")) {
 			return "";
 		}
 		return year;
