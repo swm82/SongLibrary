@@ -15,7 +15,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import songLib.view.*;
 
-public class SongLibApp extends Application {
+public class SongLib extends Application {
 	
 	private static Library library;
 	private static final String filename = "songData.txt";
