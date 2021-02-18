@@ -1,19 +1,12 @@
 package songLib.view;
 
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import java.net.URL;
 import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -21,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import songLib.app.*;
 
-public class SongLibController implements Initializable {
+public class SongLibController {
 	
 	@FXML TextField songName, songArtist, songAlbum, songYear;
 	@FXML TextField createName, createArtist, createAlbum, createYear;
@@ -108,6 +101,7 @@ public class SongLibController implements Initializable {
 		songList.getSelectionModel().select(currIndex);
 		displayInfo(songList.getSelectionModel().getSelectedItem());
 		if (editMode) toggleEdit(null);
+		songList.requestFocus();
 	}
 	
 	public void eraseCreator(ActionEvent e) {
@@ -172,12 +166,6 @@ public class SongLibController implements Initializable {
 		songList.refresh();
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// we can probably remove the intializable interface
-		
-	}
 	
 	public boolean verifyDetails(String[] details) {
 		String content;
@@ -185,7 +173,11 @@ public class SongLibController implements Initializable {
 		List<Song> sortedSongList = library.getSongs();
 		for (int i = 0; i < sortedSongList.size(); i++) {
 			Song curr = sortedSongList.get(i); 
-			if (curr != null && curr.getName().equalsIgnoreCase(details[0]) && curr.getArtist().equalsIgnoreCase(details[1])) {
+			if (editMode && curr != null && curr.getName().equalsIgnoreCase(details[0]) && curr.getArtist().equalsIgnoreCase(details[1])
+					&& curr.getAlbum().equalsIgnoreCase(details[2]) && curr.getYear().equalsIgnoreCase(details[3])) {
+				duplicate = true;
+				break;
+			} else if (!editMode && curr != null && curr.getName().equalsIgnoreCase(details[0]) && curr.getArtist().equalsIgnoreCase(details[1])) {
 				duplicate = true;
 				break;
 			}
