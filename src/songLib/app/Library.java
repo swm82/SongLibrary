@@ -1,9 +1,6 @@
 package songLib.app;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -41,7 +38,6 @@ public class Library {
 		return song;
 	}
 		
-	// I think this (slow) method for removal would work for observable lists
 	public void deleteSong(Song songToDelete) {
 		obsSongList.remove(songToDelete);
 	}
