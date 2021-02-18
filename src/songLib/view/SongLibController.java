@@ -1,14 +1,20 @@
 package songLib.view;
 
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import java.net.URL;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -57,7 +63,6 @@ public class SongLibController implements Initializable {
 	
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		
 	}
 	
 	// Event handlers
@@ -84,7 +89,9 @@ public class SongLibController implements Initializable {
 	}
 
 	public void addCommand(ActionEvent e) {
-		String[] details = {createName.getText(), createArtist.getText(), createAlbum.getText(), createYear.getText()};
+		String[] details = {createName.getText().trim(), createArtist.getText().trim(), createAlbum.getText().trim(), createYear.getText().trim()};
+		if (!verifyDetails(details))
+			return;
 		Song newAddition = library.addSong(details);
 		displayInfo(newAddition);
 		createName.setText("");
@@ -108,7 +115,6 @@ public class SongLibController implements Initializable {
 		createAlbum.setText("");
 		createYear.setText("");
 		createArtist.setText("");
-		
 	}
 	
 	// Goes thru the detail pane to toggle controls
@@ -149,54 +155,12 @@ public class SongLibController implements Initializable {
 		}
 	}
 	
-//	public void editCommand(ActionEvent e) {
-//		
-//		//songList.setMouseTransparent( true );
-//		//songList.setFocusTraversable( false );
-//		editMode = true;
-//		System.out.println("Edit");
-//		
-//		songName.setEditable(true);
-//		songArtist.setEditable(true);
-//		songAlbum.setEditable(true);
-//		songYear.setEditable(true);
-//
-//		activateEditor.setDisable(true);
-//		
-//		songArtist.requestFocus();
-//		songArtist.positionCaret(songArtist.getText().length());
-//		submitEditor.setDisable(false);
-//		cancelEditor.setDisable(false);
-//
-//	}
-//	
-//	public void cancelEditing(ActionEvent e) {
-//		
-//		System.out.println("Exiting Editor Mode");
-//		
-//		if (!editMode) {
-//			System.out.println(editMode);
-//			return;
-//		}
-//		
-//		
-//		submitEditor.setDisable(true);
-//		cancelEditor.setDisable(true);
-//		activateEditor.setDisable(false);
-//
-//		displayInfo(songList.getSelectionModel().getSelectedItem());
-//		
-//		songName.setEditable(false);
-//		songArtist.setEditable(false);
-//		songAlbum.setEditable(false);
-//		songYear.setEditable(false);
-//		
-//		songList.requestFocus();
-//		editMode = false;
-//	}
+
 	
 	public void submitEdits(ActionEvent e) {
-		String[] details = {songName.getText(), songArtist.getText(), songAlbum.getText(), songYear.getText()};
+		String[] details = {songName.getText().trim(), songArtist.getText().trim(), songAlbum.getText().trim(), songYear.getText().trim()};
+		if (!verifyDetails(details))
+			return;
 		Song edited = songList.getSelectionModel().getSelectedItem();
 		edited.setName(songName.getText());
 		edited.setArtist(songArtist.getText());
@@ -212,6 +176,44 @@ public class SongLibController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		// we can probably remove the intializable interface
+		
+	}
+	
+	public boolean verifyDetails(String[] details) {
+		String content;
+		boolean duplicate = false;
+		List<Song> sortedSongList = library.getSongs();
+		for (int i = 0; i < sortedSongList.size(); i++) {
+			Song curr = sortedSongList.get(i); 
+			if (curr != null && curr.getName().equalsIgnoreCase(details[0]) && curr.getArtist().equalsIgnoreCase(details[1])) {
+				duplicate = true;
+				break;
+			}
+		}
+		
+		if (duplicate)
+			content = "This song is already present";
+		else if(details[0].equals("") || details[1].equals(""))
+			content = "Empty Input for Artist/Song Name";
+		else if(details[0].contains("|") || details[1].contains("|") || details[2].contains("|"))
+			content = "Invalid Character '|' present";
+		else if (!details[3].equals("") && !details[3].matches("^[0-9]{4}$"))
+			content = "Invalid Year";
+		else
+			return true;
+		
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.initOwner(primaryStage);
+		alert.setTitle("Error");
+		alert.setHeaderText(content);
+		alert.showAndWait();
+
+		return false;
+
+		
+		
+		
 		
 	}
 	
