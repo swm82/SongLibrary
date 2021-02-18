@@ -59,10 +59,10 @@
                   <Label text="Name:" GridPane.rowIndex="1" />
                   <Label text="Album:" GridPane.rowIndex="2" />
                   <Label text="Year:" GridPane.rowIndex="3" />
-                  <TextField fx:id="songArtist" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" />
-                  <TextField fx:id="songName" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="songAlbum" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="songYear" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="songArtist" editable="false" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="songName" editable="false" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="songAlbum" editable="false" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="songYear" editable="false" prefHeight="52.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -71,8 +71,8 @@
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="274.0" spacing="15.0">
                <children>
                   <Button fx:id="activateEditor" mnemonicParsing="false" onAction="#toggleEdit" text="Edit song" />
-                  <Button fx:id="submitEditor" layoutX="191.0" layoutY="48.0" mnemonicParsing="false" onAction="#submitEdits" text="Submit Changes" />
-                  <Button fx:id="cancelEditor" mnemonicParsing="false" onAction="#toggleEdit" prefHeight="23.0" prefWidth="66.0" text="Cancel" />
+                  <Button fx:id="submitEditor" disable="true" layoutX="191.0" layoutY="48.0" mnemonicParsing="false" onAction="#submitEdits" text="Submit Changes" />
+                  <Button fx:id="cancelEditor" disable="true" mnemonicParsing="false" onAction="#toggleEdit" prefHeight="23.0" prefWidth="66.0" text="Cancel" />
                </children>
                <VBox.margin>
                   <Insets />

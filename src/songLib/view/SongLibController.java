@@ -32,13 +32,6 @@ public class SongLibController {
 		editMode = false;
 		library = lib;
 		songList.setItems(library.getSongs());
-		songName.setEditable(false);
-		songArtist.setEditable(false);
-		songAlbum.setEditable(false);
-		songYear.setEditable(false);
-		
-		submitEditor.setDisable(true);
-		cancelEditor.setDisable(true);
 		
 		 if (library.size() != 0) {
 			songList.getSelectionModel().select(0);
