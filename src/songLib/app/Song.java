@@ -16,7 +16,6 @@ public class Song implements Comparable<Song> {
 		this.year = year;
 	}
 	
-	
 	// Getters & Setters
 	public String getArtist() {
 		return artist;

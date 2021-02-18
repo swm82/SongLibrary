@@ -1,4 +1,3 @@
-#9 Dream|John Lennon|#9 Dream by John Lennon|1975
 (I Can't Get No) Satisfaction|Rolling Stones|(I Can't Get No) Satisfaction by Rolling Stones|1965
 (I Just) Died in Your Arms|Cutting Crew|(I Just) Died in Your Arms by Cutting Crew|1986
 (Sittin' On) The Dock of the Bay|Otis Redding|(Sittin' On) The Dock of the Bay by Otis Redding|1968
@@ -43,7 +42,7 @@ Against The Wind|Bob Seger|Against The Wind by Bob Seger|1980
 Ah! Leah!|Donnie Iris|Ah! Leah! by Donnie Iris|1980
 Ain't Even Done With the Night|John Mellencamp|Ain't Even Done With the Night by John Mellencamp|
 AIN'T NO SUNSHINE|Bill Withers|AIN'T NO SUNSHINE by Bill Withers|1971
-Ain't Talkin' 'bout Love|Van Halen|Ain't Talkin' 'bout Love by Van Halen|1978
+Ain't Talkin' 'bout Love|Van Halen|Ain't Talkin' 'bout Love by Van Halen|
 Ain't That a Shame|Cheap Trick|Ain't That a Shame by Cheap Trick|
 Ain't Too Proud to Beg|Rolling Stones|Ain't Too Proud to Beg by Rolling Stones|1974
 Ain't Wastin' Time No More|Allman Brothers Band|Ain't Wastin' Time No More by Allman Brothers Band|1972

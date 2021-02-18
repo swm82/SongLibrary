@@ -158,8 +158,6 @@ public class SongLibController {
 			return false;
 		} 
 		return true;
-		
-		
 	}
 	
 	
@@ -207,7 +205,6 @@ public class SongLibController {
 		else
 			return true;
 		
-		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.initOwner(primaryStage);
 		alert.setTitle("Error");
@@ -216,6 +213,4 @@ public class SongLibController {
 
 		return false;
 	}
-	
-
 }
