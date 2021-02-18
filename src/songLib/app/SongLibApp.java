@@ -65,17 +65,10 @@ public class SongLibApp extends Application {
 	}
 	
 	public static void readFile(BufferedReader reader, Library library) throws IOException {
-		System.out.println("reading");
 		String line = "";
 		String delim = "\\|";
 		while ((line = reader.readLine()) != null) {
-			System.out.println(line);
 			String[] songInfo = line.split(delim,-1);
-			System.out.println(songInfo.length);
-			for (int i = 0; i < songInfo.length; i++) {
-				System.out.println(songInfo[i]);
-			}
-			System.out.println("**************************************");
 			library.addSong(songInfo);
 		}
 	}
@@ -86,7 +79,6 @@ public class SongLibApp extends Application {
 			List<Song> songs = library.getSongs();
 			for (int i = 0; i < songs.size(); i++) {
 				Song currSong = songs.get(i);
-				System.out.println(currSong);
 				String[] details = {currSong.getName(), currSong.getArtist(), currSong.getAlbum(), currSong.getYear()};
 				myWriter.append(String.join("|", details) + "\n");
 			}
@@ -96,7 +88,6 @@ public class SongLibApp extends Application {
 					
 		} catch (IOException e) {
 		}
-		System.out.println("DONE");
 	}
 
 }
