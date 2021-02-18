@@ -1,5 +1,4 @@
-//
-
+// Seth McCann & Neeraj Mula
 
 package songLib.view;
 

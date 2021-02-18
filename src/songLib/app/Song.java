@@ -1,3 +1,5 @@
+// Seth McCann & Neeraj Mula
+
 package songLib.app;
 
 public class Song implements Comparable<Song> {
