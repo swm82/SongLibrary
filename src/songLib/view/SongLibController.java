@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import songLib.app.*;
 
 public class SongLibController {
@@ -79,7 +77,7 @@ public class SongLibController {
 
 	public void addCommand(ActionEvent e) {
 		String[] details = {createName.getText().trim(), createArtist.getText().trim(), createAlbum.getText().trim(), createYear.getText().trim()};
-		if (!confirm("Are you sure you want to add song: " + details[0] + " " + details[1])) return;
+		if (!confirm("Are you sure you want to add song: " + details[0] + " - " + details[1])) return;
 		if (!verifyDetails(details))
 			return;
 		Song newAddition = library.addSong(details);
@@ -153,10 +151,6 @@ public class SongLibController {
 		alert.initOwner(primaryStage);
 		alert.setTitle("Confirm");
 		alert.setHeaderText(content);
-		Text t = new Text("This is a text sample");
-		t.setStyle("-fx-font-family: Arial");
-		DialogPane dialogPane = alert.getDialogPane();
-		dialogPane.setContent(t);
 		Optional<ButtonType> result = alert.showAndWait();
 		if(!result.isPresent() || result.get() != ButtonType.OK) {
 			return true;
@@ -172,7 +166,7 @@ public class SongLibController {
 		if (!verifyDetails(details))
 			return;
 		Song edited = songList.getSelectionModel().getSelectedItem();
-		if (!confirm("Change song details from: " + edited + " to " + details[0] + details[1])) return; 
+		if (!confirm("Change song details from: " + edited + " to " + details[0] + " - " + details[1])) return; 
 		edited.setName(songName.getText());
 		edited.setArtist(songArtist.getText());
 		edited.setAlbum(songAlbum.getText());
