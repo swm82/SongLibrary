@@ -1,11 +1,10 @@
+##|Hello||
 #9 Dream|John Lennon|#9 Dream by John Lennon|1975
-(Don't Fear) The Reaper|Blue Oyster Cult|(Don't Fear) The Reaper by Blue Oyster Cult|1976
 (I Can't Get No) Satisfaction|Rolling Stones|(I Can't Get No) Satisfaction by Rolling Stones|1965
 (I Just) Died in Your Arms|Cutting Crew|(I Just) Died in Your Arms by Cutting Crew|1986
 (Sittin' On) The Dock of the Bay|Otis Redding|(Sittin' On) The Dock of the Bay by Otis Redding|1968
 (You Can Still) Rock in America|Night Ranger|(You Can Still) Rock in America by Night Ranger|1983
 (You Gotta) Fight for Your Right (To Party)|Beastie Boys|(You Gotta) Fight for Your Right (To Party) by Beastie Boys|1986
-0|A||
 18 And Life|Skid Row|18 And Life by Skid Row|1989
 1984/jump|Van Halen|1984/jump by Van Halen|1984
 19th Nervous Breakdown|Rolling Stones|19th Nervous Breakdown by Rolling Stones|1966
@@ -2179,4 +2178,5 @@ Your're Sixteen|Ringo Starr|Your're Sixteen by Ringo Starr|1974
 Yours Is No Disgrace|Yes|Yours Is No Disgrace by Yes|1971
 Youth Gone Wild|Skid Row|Youth Gone Wild by Skid Row|1989
 YYZ|Rush|YYZ by Rush|1981
+Z|A||
 Ziggy Stardust|David Bowie|Ziggy Stardust by David Bowie|1972

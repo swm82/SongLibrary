@@ -156,9 +156,9 @@ public class SongLibController {
 		alert.setHeaderText(content);
 		Optional<ButtonType> result = alert.showAndWait();
 		if(!result.isPresent() || result.get() != ButtonType.OK) {
-			return true;
+			return false;
 		} 
-		return false;
+		return true;
 		
 		
 	}
