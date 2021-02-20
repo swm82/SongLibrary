@@ -79,9 +79,8 @@ public class SongLibController {
 
 	public void addCommand(ActionEvent e) {
 		String[] details = {createName.getText().trim(), createArtist.getText().trim(), createAlbum.getText().trim(), createYear.getText().trim()};
+		if (!verifyDetails(details)) return;
 		if (!confirm("Are you sure you want to add song: " + details[0] + " - " + details[1])) return;
-		if (!verifyDetails(details))
-			return;
 		Song newAddition = library.addSong(details);
 		displayInfo(newAddition);
 		createName.setText("");
@@ -89,10 +88,13 @@ public class SongLibController {
 		createYear.setText("");
 		createArtist.setText("");
 		songList.getSelectionModel().select(library.getSongs().indexOf(newAddition));
+		songList.scrollTo(library.getSongs().indexOf(newAddition));
 
 	}
 	
 	public void deleteCommand(ActionEvent e) {
+		if (library.getSongs().size() == 0) return;
+		
 		if (!confirm("Are you sure you want to delete song: " + songList.getSelectionModel().getSelectedItem())) return;
 		int currIndex = songList.getSelectionModel().getSelectedIndex();
 		library.deleteSong(songList.getSelectionModel().getSelectedItem());
@@ -111,6 +113,7 @@ public class SongLibController {
 	
 	// Goes thru the detail pane to toggle controls
 	public void toggleEdit(ActionEvent e) {
+		if (library.getSongs().size() == 0) return;
 		detailPanel.getChildren().forEach(node -> {
 			if (node instanceof GridPane) {
 				GridPane gpNode = (GridPane) node;
@@ -175,6 +178,7 @@ public class SongLibController {
 		editMode = false;
 		songList.setItems(library.getSongs().sorted());
 		songList.refresh();
+		songList.scrollTo(library.getSongs().indexOf(edited));
 	}
 
 	
