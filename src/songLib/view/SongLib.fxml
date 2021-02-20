@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="486.0" prefWidth="921.0" style="-fx-font-family: Arial;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songLib.view.SongLibController">
+<HBox prefHeight="486.0" prefWidth="921.0" style="-fx-font-family: Arial" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songLib.view.SongLibController">
    <children>
       <VBox fx:id="listPanel" alignment="CENTER" prefHeight="486.0" prefWidth="335.0">
          <children>
